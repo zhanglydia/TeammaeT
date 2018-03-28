@@ -1,33 +1,27 @@
 # TeammaeT
 
-## personnel
+## Personnel
+
 Daniel Keriazis and Lydia Zhang
 
-## statement of problem
-return the Boolean value of the statement
-"the maze is navigable, having a legal travel path from current position to existing treasure"
+## Statement of Problem
 
-## recursive abstraction
-return the Boolean value of the statement 
-"the maze is navigable, having a legal travel path from current position to existing treasure" 
-given starting moves
+Return the Boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure"
 
-## base case
+## Recursive Abstraction
+
+Return the Boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure" given starting moves
+
+## Base Case
+
 The current position is a treasure or there are no legal moves.
 
-## English or pseudocode description of algorithm
-'
-If current position is treasure, return true
-If there are no legal moves, return false
+## English or Pseudocode Description of Algorithm
 
-Iterate through the legal moves, recurse
+    If current position is treasure, return true
+    If there are no legal moves, return false
+    Iterate through the legal moves, recurse
 
-'
+## Class(es), with Fields and Methods
 
-
-## class(es), with fields and methods
-
-## version*n* wish list
-
-
-
+## Version_0_ Wish List
