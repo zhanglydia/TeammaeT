@@ -16,6 +16,13 @@ given starting moves
 The current position is a treasure or there are no legal moves.
 
 ## English or pseudocode description of algorithm
+'
+If current position is treasure, return true
+If there are no legal moves, return false
+
+Iterate through the legal moves, recurse
+
+'
 
 
 ## class(es), with fields and methods
