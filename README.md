@@ -39,3 +39,9 @@ The current position is a treasure or there are no legal moves.
     ```
 
 ## Version0 Wish List
+
+- Tests
+  - Null maze
+  - No treasure
+  - Treasure but no path
+  - Basic mazes
