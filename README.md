@@ -10,7 +10,7 @@ Return the boolean value of the statement "the maze is navigable, having a legal
 
 ## Recursive Abstraction
 
-Return the boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure" given starting moves
+Return the boolean value of the statement "the maze is navigable, having a legal travel path from explorer's next position to existing treasure" given starting moves
 
 ## Base Case
 
@@ -38,7 +38,7 @@ The current position is a treasure or there are no legal moves.
     public String toString();
     ```
 
-## Version0 Wish List
+## Version _n_ Wish List
 
 - Tests
   - Null maze
