@@ -14,7 +14,7 @@ Return the boolean value of the statement "the maze is navigable, having a legal
 
 ## Base Case
 
-The current position is a treasure or there are no legal moves.
+The current position is a treasure or a wall.
 
 ## English or Pseudocode Description of Algorithm
 
