@@ -1,11 +1,11 @@
 /**
   Represent a Maze with an Explorer in it
-  
+
   A "MazeTerminal" is...
     o  a wall element; or
     o  a treasure; or
     o  a stepping stone.
-  
+
   A "Maze" is...
     o  a MazeTerminal; or
     o  a stepping stone with a Maze as any of its 4 neighbors
@@ -19,7 +19,7 @@ public class Maze {
     public final static int TREASURE = 0;
     public final static int WALL = 1;
     public final static int STEPPING_STONE = 2;
-    
+
     // directions that can be searched
     public final static int EAST =  1;
     public final static int NORTH = 2;
@@ -28,11 +28,11 @@ public class Maze {
        /* Values are pretty arbitrary. Values of 2^n might be useful
           in the unlikely event that we ever want to add north-west, etc.:
           2+4 --> 6  */
-    
+
     private int[][] maze;
     private final static int MAX_RANKS = 64;
     private int rankCount;  // number of ranks in a constructed Maze
-    
+
     private Vector explorerPosition;  // see Vector inner class, below
 
     /**
@@ -59,7 +59,7 @@ public class Maze {
              */
             String line = sc.nextLine();
             // System.out.println( "|" + line + "|");
-            
+
             maze[ rank] = new int[ line.length()];
 
             // Convert the input line into maze elements.
@@ -73,7 +73,7 @@ public class Maze {
                 maze[ rank][ file] = element;
             }
         }
-        
+
         explorerPosition = new Vector().add( explorerRank, explorerFile);
         // // for debugging: report explorer's location
         // System.out.println( "explorer at " + explorerPosition.rank
@@ -86,12 +86,23 @@ public class Maze {
       Deep copy of all instance fields.
      */
     public Maze( Maze old) {
-
         // Copy the explorer's position (code by Holmes is asserted to work)
         explorerPosition = new Vector( old.explorerPosition);
 
-        throw new java.lang.RuntimeException(
-            "Write code to copy the maze[][] array and rankCount.");
+        // Copy maze[][]
+        maze = new int[old.maze.length][]; // Set the length
+        for (int i = 0; i < maze.length; i++) {
+            if (old.maze[i] == null) { // If no value in old, skip current rank
+                continue;
+            }
+            maze[i] = new int[old.maze[i].length]; // Set the length
+            for (int j = 0; j < maze[i].length; j++) {
+                maze[i][j] = old.maze[i][j]; // Copy the values
+            }
+        }
+
+        // Copy rankCount
+        rankCount = old.rankCount;
     }
 
 
@@ -99,7 +110,7 @@ public class Maze {
       @return a string representing of this instance
      */
     public String toString() {
-        
+
         /* characters that represent elements of the maze,
            indexed by the numbers used to represent elements
           */
@@ -112,14 +123,14 @@ public class Maze {
         for( int file = 0; file < maze[0].length; file++)
             aboveAndBelow += "-";
         aboveAndBelow += "-" + System.lineSeparator();
-        
+
         // process maze[][], explorer
         String result = aboveAndBelow;
         for( int rank = 0; rank < rankCount; rank++) {
             result += "|";
             for( int file = 0; file < maze[ rank].length; file++) {
                 int elem = maze[ rank][ file];
-                
+
                 // choose from the appropriate character set,
                 if(    explorerPosition != null
                     && explorerPosition.equals( rank, file)
@@ -137,10 +148,10 @@ public class Maze {
       Move the Explorer a step in the indicated direction.
       Attempting to position the explorer outside the maze means
       it has no position.
-      
+
       @precondition: explorer starts in a valid position
      */
-    public void go( int direction)  { 
+    public void go( int direction)  {
         switch( direction) {
             case EAST:
                 explorerPosition = explorerPosition.add( 0, 1);
@@ -188,8 +199,8 @@ public class Maze {
      */
     private class Vector {
         private int rank, file;
-        
-        // The no-arg constructor produces [0, 0] 
+
+        // The no-arg constructor produces [0, 0]
         private Vector() {}
 
         // copy-constructor
@@ -204,14 +215,14 @@ public class Maze {
            a constructor cannot produce a null.
          */
 
-        private Vector add( int ranks, int files) { 
+        private Vector add( int ranks, int files) {
             rank += ranks;
             file += files;
-            
+
             // // for debugging: report resulting position
             // System.out.println( "sum: " + rank + " / " + rankCount
                               // + ", " +    file + " / " + maze[ rank].length );
-            
+
             // still in bounds?
             if(    0 <= rank && rank < rankCount
                 && 0 <= file && file < maze[ rank].length
