@@ -21,8 +21,8 @@ The current position is a treasure or a wall.
 
     If current position contains treasure, return true
     If current position contains a wall, revert to snapshot
+    Update snapshot to match current state
     For each cardinal direction:
-        Update snapshot to match current state
         Drop a wall
         Move the explorer in that direction
         Recurse
