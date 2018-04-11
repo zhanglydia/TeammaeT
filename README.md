@@ -6,7 +6,7 @@ Daniel Keriazis and Lydia Zhang
 
 ## Statement of Problem
 
-Return the boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure"
+Return the boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure".
 
 ## Recursive Abstraction
 
