@@ -11,7 +11,7 @@ Return the boolean value of the statement "the maze is navigable, having a legal
 ## Recursive Abstraction
 
 When asked to return the boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure",  
-the recursive abstraction can return the value of said statement an explorer with a new position.
+the recursive abstraction can return the value of said statement with an explorer in a new position.
 
 ## Base Case
 
