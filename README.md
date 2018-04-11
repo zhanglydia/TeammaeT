@@ -10,7 +10,8 @@ Return the boolean value of the statement "the maze is navigable, having a legal
 
 ## Recursive Abstraction
 
-Return the boolean value of the statement "the maze is navigable, having a legal travel path from explorer's next position to existing treasure" given starting moves
+When asked to return the boolean value of the statement "the maze is navigable, having a legal travel path from current position to existing treasure",  
+the recursive abstraction can return the value of said statement an explorer with a new position.
 
 ## Base Case
 
@@ -18,9 +19,14 @@ The current position is a treasure or a wall.
 
 ## English or Pseudocode Description of Algorithm
 
-    If current position is treasure, return true
-    If there are no legal moves, return false
-    Iterate through the legal moves, recurse on each move
+    If current position contains treasure, return true
+    If current position contains a wall, revert to snapshot
+    For each cardinal direction:
+        Update snapshot to match current state
+        Drop a wall
+        Move the explorer in that direction
+        Recurse
+    Return false
 
 ## Classes with Fields and Methods
 
