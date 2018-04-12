@@ -19,30 +19,37 @@ The current position is a treasure or a wall.
 
 ## English or Pseudocode Description of Algorithm
 
+```
+Determine whether a maze can be solved given a snapshot:
     If current position contains treasure, return true
-    If current position contains a wall, revert to snapshot
-    Update snapshot to match current state
+    If current position contains a wall
+        Revert to latest snapshot
+        Return false
+    Create new snapshot of current state
     For each cardinal direction:
         Drop a wall
         Move the explorer in that direction
-        Recurse
+        Recurse with new snapshot
     Return false
+```
 
 ## Classes with Fields and Methods
 
 ### Maze
 
--   #### Fields
-    ```java
-    private boolean[][] cells; // Each cell has the boolean value of the
-                               // statement "this cell is a path"
-    private Explorer explorer;
-    ```
--   #### Methods
-    ```java
-    public boolean cell(int rank, int file);
-    public String toString();
-    ```
+- #### Fields
+
+  ```java
+  private boolean[][] cells; // Each cell has the boolean value of the
+                             // statement "this cell is a path"
+  private Explorer explorer;
+  ```
+- #### Methods
+
+  ```java
+  public boolean cell(int rank, int file);
+  public String toString();
+  ```
 
 ## Version _n_ Wish List
 
