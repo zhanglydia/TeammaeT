@@ -20,7 +20,7 @@ The current position is a treasure or a wall.
 ## English or Pseudocode Description of Algorithm
 
 ```
-Find the
+Determine whether a maze can be solved given a snapshot:
     If current position contains treasure, return true
     If current position contains a wall
         Revert to latest snapshot
