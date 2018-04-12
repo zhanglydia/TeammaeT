@@ -20,8 +20,12 @@ The current position is a treasure or a wall.
 ## English or Pseudocode Description of Algorithm
 
     If current position contains treasure, return true
-    If current position contains a wall, revert to snapshot
-    Update snapshot to match current state
+    If current position contains a wall:
+        If snapshot exists:
+            Revert to latest snapshot
+        Else:
+            Return false
+    Create new snapshot of current state
     For each cardinal direction:
         Drop a wall
         Move the explorer in that direction
