@@ -22,15 +22,15 @@ The current position is a treasure or a wall.
 ```
 Determine whether a maze can be solved:
     If current position contains treasure:
-    	  Return true
+        Return true
     If current position contains a wall:
-    	  Return false
+        Return false
     Create new snapshot of a copy of the current state
     For each cardinal direction:
         Drop a wall
         Move the explorer in that direction
         If the new maze can be solved:
-			      Return true
+            Return true
         Set the maze to a copy of the snapshot
     Return false
 ```
