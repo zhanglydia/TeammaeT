@@ -5,6 +5,8 @@ public class UserOfMazeSolver {
         TestIntersectionNoTreasure();
         TestIntersectionTreasureNorth();
         TestCorridorTreasureWest();
+        TestAllSteps();
+        TestComplexMaze();
     }
 
     public static void TestStartOnTreasure() throws java.io.FileNotFoundException {
@@ -53,6 +55,28 @@ public class UserOfMazeSolver {
 
     public static void TestCorridorTreasureWest() throws java.io.FileNotFoundException {
         Maze m = new Maze("mazes/4cell_treasureWest.txt", 0, 2);
+        boolean expected = true;
+        MazeSolver solver = new MazeSolver(m);
+        if (solver.canSolve() == expected) {
+            System.out.println("Test passing");
+        } else {
+            System.out.println("Test failed!");
+        }
+    }
+
+    public static void TestAllSteps() throws java.io.FileNotFoundException {
+        Maze m = new Maze("mazes/steppingStonesEverywhere.txt", 0, 0);
+        boolean expected = true;
+        MazeSolver solver = new MazeSolver(m);
+        if (solver.canSolve() == expected) {
+            System.out.println("Test passing");
+        } else {
+            System.out.println("Test failed!");
+        }
+    }
+
+    public static void TestComplexMaze() throws java.io.FileNotFoundException {
+        Maze m = new Maze("mazes/16x32.txt", 7, 15);
         boolean expected = true;
         MazeSolver solver = new MazeSolver(m);
         if (solver.canSolve() == expected) {
