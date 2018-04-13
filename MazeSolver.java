@@ -8,6 +8,7 @@ public class MazeSolver {
     }
 
     public  boolean canSolve() {
+
         if (maze.explorerIsOnA() == Maze.TREASURE) {
             return true;
         }
@@ -27,4 +28,28 @@ public class MazeSolver {
         }
         return false;
     }
+
+    public int numSteps(){
+	if (maze.explorerIsOnA() == Maze.TREASURE) {
+	    return 0;
+        }
+
+        if (maze.explorerIsOnA() == Maze.WALL) {
+	    return -1;
+        }
+
+
+        Maze snapshot = new Maze(maze);
+        for (int dir : directions) {
+            maze.dropA(Maze.WALL);
+            maze.go(dir);
+	    if (numSteps()>= 0){	   
+		return 1 + numSteps();
+	    }
+	    maze = new Maze(snapshot);
+        } 
+        return -2;
+    }
+
+
 }
