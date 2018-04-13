@@ -37,21 +37,44 @@ Determine whether a maze can be solved:
 
 ## Classes with Fields and Methods
 
+### MazeSolver
+
+- #### Fields
+
+  ```java
+  private Maze maze; 
+  private static int[] directions; // used in for-each loop
+                                   //holds cardinal directions going counter-clockwise
+
+  ```
+- #### Methods
+
+  ```java
+  public MazeSolver(Maze m)
+  public  boolean canSolve() 
+
+  ```
+
 ### Maze
 
 - #### Fields
 
   ```java
-  private boolean[][] cells; // Each cell has the boolean value of the
-                             // statement "this cell is a path"
-  private Explorer explorer;
+
   ```
 - #### Methods
 
-  ```java
-  public boolean cell(int rank, int file);
-  public String toString();
-  ```
+- `Maze(`*file name for maze*`, `*explorer position*`)` 
+   constructor: read a maze from a file and position an explorer in it.
+
+- `go(`*direction*`)`: move the explorer one step
+
+- `explorerIsOnA()` returns the maze element in 
+the cell that the explorer currently occupies.
+
+- `dropA(`*maze element*`)`:  Modify the maze to have a *maze element* in 
+the cell that the explorer currently occupies.
+ 
 
 ## Version _n_ Wish List
 
@@ -62,3 +85,5 @@ Determine whether a maze can be solved:
   - No treasure
   - Treasure but no path
   - Basic mazes
+- Count Steps
+- Draw Path
