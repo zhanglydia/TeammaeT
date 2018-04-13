@@ -1,39 +1,30 @@
-/**
-
- */
-
-import java.util.*;
-
 public class MazeSolver {
-
     private Maze maze;
 
-    private ArrayList <Maze> snapshots;
+    private static int[] directions = {Maze.EAST, Maze.NORTH, Maze.WEST, Maze.SOUTH};
 
-    public MazeSolver (Maze m) {
-	maze = new Maze (m);
+    public MazeSolver(Maze m) {
+        maze = new Maze(m);
     }
 
-    public boolean canSolve(){
-	if (maze.explorerIsOnA() == Maze.TREASURE) return true;
-	if (maze.explorerIsOnA() == Maze.WALL) {
-	    if (snapshots.size() > 0) {
-		maze = snapshots.get(snapshots.size() - 1);
-		snapshots.remove(snapshots.size() - 1);   
- 	    }
-	    return false;
-	}
-	snapshots.add(new Maze (maze) );
-	
-	    
+    public  boolean canSolve() {
+        if (maze.explorerIsOnA() == Maze.TREASURE) {
+            return true;
+        }
 
-	}
-	
-	
-	      
-	
-    }
-	    
- 
-    }
+        if (maze.explorerIsOnA() == Maze.WALL) {
+            return false;
+        }
 
+        Maze snapshot = new Maze(maze);
+        for (int dir : directions) {
+            maze.dropA(Maze.WALL);
+            maze.go(dir);
+            if (canSolve()) {
+                return true;
+            }
+            maze = new Maze(snapshot);
+        }
+        return false;
+    }
+}
