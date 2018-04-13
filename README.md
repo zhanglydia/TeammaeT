@@ -20,16 +20,18 @@ The current position is a treasure or a wall.
 ## English or Pseudocode Description of Algorithm
 
 ```
-Determine whether a maze can be solved given a snapshot:
-    If current position contains treasure, return true
-    If current position contains a wall
-        Revert to latest snapshot
-        Return false
-    Create new snapshot of current state
+Determine whether a maze can be solved:
+    If current position contains treasure:
+    	  Return true
+    If current position contains a wall:
+    	  Return false
+    Create new snapshot of a copy of the current state
     For each cardinal direction:
         Drop a wall
         Move the explorer in that direction
-        Recurse with new snapshot
+        If the new maze can be solved:
+			      Return true
+        Set the maze to a copy of the snapshot
     Return false
 ```
 
@@ -54,6 +56,8 @@ Determine whether a maze can be solved given a snapshot:
 ## Version _n_ Wish List
 
 - Tests
+  - Starts on treasure
+  - Starts on wall
   - Null maze
   - No treasure
   - Treasure but no path
