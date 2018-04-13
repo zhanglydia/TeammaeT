@@ -43,12 +43,14 @@ public class MazeSolver {
         for (int dir : directions) {
             maze.dropA(Maze.WALL);
             maze.go(dir);
-	    if (numSteps()>= 0){	   
-		return 1 + numSteps();
+	    int stepCount = numSteps();
+	    if (stepCount  >= 0){
+	       
+		return 1 + stepCount;
 	    }
 	    maze = new Maze(snapshot);
         } 
-        return -2;
+        return -1;
     }
 
 

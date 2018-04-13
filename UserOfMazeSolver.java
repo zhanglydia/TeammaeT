@@ -48,7 +48,7 @@ public class UserOfMazeSolver {
             System.out.println("Test failed!");
         }
 	System.out.println(solver.numSteps());
-	System.out.println("expecting -2");
+	System.out.println("expecting -1");
     }
 
     public static void TestIntersectionNoTreasure() throws java.io.FileNotFoundException {
@@ -61,7 +61,7 @@ public class UserOfMazeSolver {
             System.out.println("Test failed!");
         }
 	System.out.println(solver.numSteps());
-	System.out.println("expecting -2");
+	System.out.println("expecting -1");
     }
 
     public static void TestIntersectionTreasureNorth() throws java.io.FileNotFoundException {
