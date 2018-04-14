@@ -91,9 +91,8 @@ the cell that the explorer currently occupies.
 ## Known Bugs
 
 ```
-Failing Tests:
-    Test: Looping Danger
-        Maze: mazes/loopingDanger.txt
-        Starting: (0, 0)
-        Expected true, but got false
+All tests passing.
 ```
+
+No bugs currently known.  
+If you find one, you can create a GitHub issue and it will be appended here.
