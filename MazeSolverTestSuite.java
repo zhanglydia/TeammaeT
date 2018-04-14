@@ -11,7 +11,7 @@ public class MazeSolverTestSuite {
         t.newTest("Corridor Treasure East", "mazes/straightToTreasure.txt", 0, 0, true);
         t.newTest("Path with Turn", "mazes/pathWithTurn.txt", 2, 0, true);
         t.newTest("Path with Choice", "mazes/pathWithChoice.txt", 3, 0, true);
-        t.newTest("Looping Danger", "mazes/loopingDanger.txt", 0, 0, true);
+        t.newTest("Looping Danger", "mazes/loopingDanger.txt", 0, 0, false);
         t.newTest("Simpler Looping Danger", "mazes/simplerLoopingDanger.txt", 0, 0, true);
         t.newTest("Trouble Turning", "mazes/troubleTurning.txt", 0, 0, false);
         t.newTest("Trouble Hitting Walls", "mazes/troubleNavigating.txt", 2, 2, false);
