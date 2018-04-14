@@ -42,7 +42,7 @@ Determine whether a maze can be solved:
 - #### Fields
 
   ```java
-  private Maze maze; 
+  private Maze maze;
   private static int[] directions; // used in for-each loop
                                    //holds cardinal directions going counter-clockwise
 
@@ -51,7 +51,7 @@ Determine whether a maze can be solved:
 
   ```java
   public MazeSolver(Maze m)
-  public  boolean canSolve() 
+  public  boolean canSolve()
 
   ```
 
@@ -64,17 +64,17 @@ Determine whether a maze can be solved:
   ```
 - #### Methods
 
-- `Maze(`*file name for maze*`, `*explorer position*`)` 
+- `Maze(`*file name for maze*`, `*explorer position*`)`
    constructor: read a maze from a file and position an explorer in it.
 
 - `go(`*direction*`)`: move the explorer one step
 
-- `explorerIsOnA()` returns the maze element in 
+- `explorerIsOnA()` returns the maze element in
 the cell that the explorer currently occupies.
 
-- `dropA(`*maze element*`)`:  Modify the maze to have a *maze element* in 
+- `dropA(`*maze element*`)`:  Modify the maze to have a *maze element* in
 the cell that the explorer currently occupies.
- 
+
 
 ## Version _n_ Wish List
 
@@ -87,3 +87,13 @@ the cell that the explorer currently occupies.
   - Basic mazes
 - Count Steps
 - Draw Path
+
+## Known Bugs
+
+```
+Failing Tests:
+    Test: Looping Danger
+        Maze: mazes/loopingDanger.txt
+        Starting: (0, 0)
+        Expected true, but got false
+```
