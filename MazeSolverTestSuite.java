@@ -2,59 +2,57 @@ import java.util.*;
 
 public class MazeSolverTestSuite {
     public static void main(String[] args) throws java.io.FileNotFoundException {
-        Test_canTest t = new Test_canTest();
-        t.newTest("Start On Treasure", "mazes/4cell_treasureWest.txt", 0, 0, true);
-        t.newTest("No Treasure", "mazes/oneStepNoTreasure.txt", 0, 0, false);
-        t.newTest("Intersection No Treasure", "mazes/intersection_noTreasure.txt", 1, 1, false);
-        t.newTest("Intersection Treasure North", "mazes/intersection_treasureNorth.txt", 1, 1, true);
-        t.newTest("Corridor Treasure West", "mazes/4cell_treasureWest.txt", 0, 2, true);
-        t.newTest("Corridor Treasure East", "mazes/straightToTreasure.txt", 0, 0, true);
-        t.newTest("Path with Turn", "mazes/pathWithTurn.txt", 2, 0, true);
-        t.newTest("Path with Choice", "mazes/pathWithChoice.txt", 3, 0, true);
-        t.newTest("Looping Danger", "mazes/loopingDanger.txt", 0, 0, false);
-        t.newTest("Simpler Looping Danger", "mazes/simplerLoopingDanger.txt", 0, 0, true);
-        t.newTest("Trouble Turning", "mazes/troubleTurning.txt", 0, 0, false);
-        t.newTest("Trouble Hitting Walls", "mazes/troubleNavigating.txt", 2, 2, false);
-        t.newTest("Trouble Hitting Edge", "mazes/troubleNavigating.txt", 0, 0, false);
-        t.newTest("Trouble Finding Treasure", "mazes/troubleFindingTreasure.txt", 2, 2, true);
-        t.newTest("All Steps", "mazes/steppingStonesEverywhere.txt", 0, 0, true);
-        t.newTest("Complex Maze", "mazes/16x32.txt", 7, 15, true);
-        t.newTest("Hello Kitty", "mazes/helloKitty.txt", 6, 3, true);
-        t.runTests();
+        Test.newTest_canSolve("Start On Treasure", "mazes/4cell_treasureWest.txt", 0, 0, true);
+        Test.newTest_canSolve("No Treasure", "mazes/oneStepNoTreasure.txt", 0, 0, false);
+        Test.newTest_canSolve("Intersection No Treasure", "mazes/intersection_noTreasure.txt", 1, 1, false);
+        Test.newTest_canSolve("Intersection Treasure North", "mazes/intersection_treasureNorth.txt", 1, 1, true);
+        Test.newTest_canSolve("Corridor Treasure West", "mazes/4cell_treasureWest.txt", 0, 2, true);
+        Test.newTest_canSolve("Corridor Treasure East", "mazes/straightToTreasure.txt", 0, 0, true);
+        Test.newTest_canSolve("Path with Turn", "mazes/pathWithTurn.txt", 2, 0, true);
+        Test.newTest_canSolve("Path with Choice", "mazes/pathWithChoice.txt", 3, 0, true);
+        Test.newTest_canSolve("Looping Danger", "mazes/loopingDanger.txt", 0, 0, false);
+        Test.newTest_canSolve("Simpler Looping Danger", "mazes/simplerLoopingDanger.txt", 0, 0, true);
+        Test.newTest_canSolve("Trouble Turning", "mazes/troubleTurning.txt", 0, 0, false);
+        Test.newTest_canSolve("Trouble Hitting Walls", "mazes/troubleNavigating.txt", 2, 2, false);
+        Test.newTest_canSolve("Trouble Hitting Edge", "mazes/troubleNavigating.txt", 0, 0, false);
+        Test.newTest_canSolve("Trouble Finding Treasure", "mazes/troubleFindingTreasure.txt", 2, 2, true);
+        Test.newTest_canSolve("All Steps", "mazes/steppingStonesEverywhere.txt", 0, 0, true);
+        Test.newTest_canSolve("Complex Maze", "mazes/16x32.txt", 7, 15, true);
+        Test.newTest_canSolve("Hello Kitty", "mazes/helloKitty.txt", 6, 3, true);
+
+        ArrayList<ArrayList<Integer>> l;
+        ArrayList<Integer> p;
+        l = new ArrayList<ArrayList<Integer>>();
+        p = new ArrayList<Integer>(); l.add(p);
+        Test.newTest_solve("Start On Treasure", "mazes/4cell_treasureWest.txt", 0, 0, l);
+        l = new ArrayList<ArrayList<Integer>>();
+        Test.newTest_solve("No Treasure", "mazes/oneStepNoTreasure.txt", 0, 0, l);
+        l = new ArrayList<ArrayList<Integer>>();
+        Test.newTest_solve("No Treasure", "mazes/intersection_noTreasure.txt", 1, 1, l);
+        l = new ArrayList<ArrayList<Integer>>();
+        p = new ArrayList<Integer>(); p.add(Maze.NORTH); l.add(p);
+        Test.newTest_solve("No Treasure", "mazes/intersection_treasureNorth.txt", 1, 1, l);
+
+        Test.runTests();
     }
 }
 
-class Test_canTest {
-    private ArrayList<ArrayList<Object>> tests = new ArrayList<ArrayList<Object>>();
-    private ArrayList<ArrayList<Object>> failingTests = new ArrayList<ArrayList<Object>>();
+class Test {
+    private static ArrayList<Tester> tests = new ArrayList<Tester>();
+    protected static ArrayList<Tester> failingTests = new ArrayList<Tester>();
 
-    public void newTest(String name, String sourceFilename, int explorerRank, int explorerFile, boolean expected) {
-        ArrayList<Object> test = new ArrayList<Object>();
-        test.add(name);
-        test.add(sourceFilename);
-        test.add(explorerRank);
-        test.add(explorerFile);
-        test.add(expected);
-        tests.add(test);
+    public static void newTest_canSolve(String name, String sourceFilename, int explorerRank, int explorerFile, boolean expected) {
+        tests.add(new Test_canSolve(name, sourceFilename, explorerRank, explorerFile, expected));
     }
 
-    public void runTests() throws java.io.FileNotFoundException {
+    public static void newTest_solve(String name, String sourceFilename, int explorerRank, int explorerFile, ArrayList<ArrayList<Integer>> expected) {
+        tests.add(new Test_solve(name, sourceFilename, explorerRank, explorerFile, expected));
+    }
+
+    public static void runTests() throws java.io.FileNotFoundException {
         for (int i = 0; i < tests.size(); i++) {
-            ArrayList<Object> test = tests.get(i);
-
-            String name = (String)test.get(0);
-            String sourceFilename = (String)test.get(1);
-            int explorerRank = (int)test.get(2);
-            int explorerFile = (int)test.get(3);
-            boolean expected = (boolean)test.get(4);
-
-            Maze m = new Maze(sourceFilename, explorerRank, explorerFile);
-            MazeSolver solver = new MazeSolver(m);
-            boolean got = solver.canSolve();
-            if (got != expected) {
-                test.add(got);
-                failingTests.add(test);
-            }
+            Tester test = tests.get(i);
+            test.run();
         }
 
         if (failingTests.size() == 0) {
@@ -64,21 +62,84 @@ class Test_canTest {
 
         String message = "Failing Tests:\n";
         for (int i = 0; i < failingTests.size(); i++) {
-            ArrayList<Object> test = failingTests.get(i);
-
-            String name = (String)test.get(0);
-            String sourceFilename = (String)test.get(1);
-            int explorerRank = (int)test.get(2);
-            int explorerFile = (int)test.get(3);
-            boolean expected = (boolean)test.get(4);
-            boolean got = (boolean)test.get(5);
-
-            message += "    Test: " + name + "\n";
-            message += "        Maze: " + sourceFilename + "\n";
-            message += "        Starting: (" + explorerRank + ", " + explorerFile + ")\n";
-            message += "        Expected " + expected + ", but got " + got + "\n";
+            Tester test = failingTests.get(i);
+            message += test;
         }
 
         System.out.print(message);
+    }
+}
+
+interface Tester {
+    public void run() throws java.io.FileNotFoundException;
+}
+
+class Test_canSolve extends Test implements Tester {
+    private String name;
+    private String sourceFilename;
+    private int explorerRank;
+    private int explorerFile;
+    private boolean expected;
+    private boolean got;
+
+    public Test_canSolve(String name, String sourceFilename, int explorerRank, int explorerFile, boolean expected) {
+        this.name = name;
+        this.sourceFilename = sourceFilename;
+        this.explorerRank = explorerRank;
+        this.explorerFile = explorerFile;
+        this.expected = expected;
+    }
+
+    public String toString() {
+        String message = "";
+        message += "    Test (canSolve): " + name + "\n";
+        message += "        Maze: " + sourceFilename + "\n";
+        message += "        Starting: (" + explorerRank + ", " + explorerFile + ")\n";
+        message += "        Expected " + expected + ", but got " + got + "\n";
+        return message;
+    }
+
+    public void run() throws java.io.FileNotFoundException {
+        Maze m = new Maze(sourceFilename, explorerRank, explorerFile);
+        MazeSolver solver = new MazeSolver(m);
+        got = solver.canSolve();
+        if (got != expected) {
+            failingTests.add(this);
+        }
+    }
+}
+
+class Test_solve extends Test implements Tester {
+    private String name;
+    private String sourceFilename;
+    private int explorerRank;
+    private int explorerFile;
+    private ArrayList<ArrayList<Integer>> expected;
+    private ArrayList<ArrayList<Integer>> got;
+
+    public Test_solve(String name, String sourceFilename, int explorerRank, int explorerFile, ArrayList<ArrayList<Integer>> expected) {
+        this.name = name;
+        this.sourceFilename = sourceFilename;
+        this.explorerRank = explorerRank;
+        this.explorerFile = explorerFile;
+        this.expected = expected;
+    }
+
+    public String toString() {
+        String message = "";
+        message += "    Test (solve): " + name + "\n";
+        message += "        Maze: " + sourceFilename + "\n";
+        message += "        Starting: (" + explorerRank + ", " + explorerFile + ")\n";
+        message += "        Expected " + expected + ", but got " + got + "\n";
+        return message;
+    }
+
+    public void run() throws java.io.FileNotFoundException {
+        Maze m = new Maze(sourceFilename, explorerRank, explorerFile);
+        MazeSolver solver = new MazeSolver(m);
+        got = solver.solve();
+        if (!got.equals(expected)) {
+            failingTests.add(this);
+        }
     }
 }
