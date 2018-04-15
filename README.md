@@ -78,15 +78,10 @@ the cell that the explorer currently occupies.
 
 ## Version _n_ Wish List
 
-- Tests
-  - Starts on treasure
-  - Starts on wall
-  - Null maze
-  - No treasure
-  - Treasure but no path
-  - Basic mazes
-- Count Steps
-- Draw Path
+### v0
+- Determine whether a maze can be solved
+- Implement test suite
+- Implement user class
 
 ## Known Bugs
 
