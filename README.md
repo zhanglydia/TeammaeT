@@ -83,6 +83,9 @@ the cell that the explorer currently occupies.
 - Implement test suite
 - Implement user class
 
+### v1
+- Find all solutions to a maze
+
 ## Known Bugs
 
 ```
