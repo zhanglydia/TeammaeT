@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MazeSolver {
     private Maze maze;
 
@@ -5,6 +7,33 @@ public class MazeSolver {
 
     public MazeSolver(Maze m) {
         maze = new Maze(m);
+    }
+
+    public ArrayList<ArrayList<Integer>> solve() {
+        ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
+
+        if (maze.explorerIsOnA() == Maze.TREASURE) {
+            paths.add(new ArrayList<Integer>());
+            return paths;
+        }
+
+        if (maze.explorerIsOnA() == Maze.WALL) {
+            return new ArrayList<ArrayList<Integer>>();
+        }
+
+        Maze snapshot = new Maze(maze);
+        for (int dir : DIRECTIONS) {
+            maze.dropA(Maze.WALL);
+            maze.go(dir);
+            ArrayList<ArrayList<Integer>> solutions = solve();
+            for (int i = 0; i < solutions.size(); i++) {
+                ArrayList<Integer> path = solutions.get(i);
+                path.add(0, dir);
+                paths.add(path);
+            }
+            maze = new Maze(snapshot);
+        }
+        return paths;
     }
 
     public boolean canSolve() {
