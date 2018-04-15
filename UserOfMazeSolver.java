@@ -13,7 +13,10 @@ public class UserOfMazeSolver {
         int rank = Integer.parseInt(args[1]);
         int file = Integer.parseInt(args[2]);
         Maze maze = new Maze(args[0], rank, file);
-        MazeSolver solver = new MazeSolver(maze);
+        MazeSolver solver;
+        solver = new MazeSolver(maze);
         System.out.println("Can Solve: " + solver.canSolve());
+        solver = new MazeSolver(maze);
+        System.out.println("Solutions: " + solver.solve());
     }
 }
