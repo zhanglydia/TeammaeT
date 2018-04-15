@@ -20,6 +20,25 @@ The current position is a treasure or a wall.
 ## English or Pseudocode Description of Algorithm
 
 ```
+Find all solutions to a maze:
+    Create a set of paths
+    If current position contains treasure:
+        Append an empty array to set
+        Return set
+    If current position contains a wall:
+        Return the empty set
+    Create new snapshot of a copy of the current state
+    For each cardinal direction:
+        Drop a wall
+        Move the explorer in that direction
+        Get solution of new maze
+        For every path in solutions:
+            Insert direction as item 0 in path
+            Add path to set
+        Set the maze to a copy of the snapshot
+    Return set
+```
+```
 Determine whether a maze can be solved:
     If current position contains treasure:
         Return true
