@@ -79,6 +79,6 @@ class Test_canTest {
             message += "        Expected " + expected + ", but got " + got + "\n";
         }
 
-        System.out.println(message);
+        System.out.print(message);
     }
 }
