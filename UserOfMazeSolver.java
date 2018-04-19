@@ -1,5 +1,7 @@
+import java.util.*;
+
 public class UserOfMazeSolver {
-    public static void main(String[] args) throws java.io.FileNotFoundException {
+    public static void main(String[] args) {
         if (args.length < 3) {
             System.out.println("USAGE: java UserOfMazeSolver PATH RANK FILE\n");
             System.out.println("    PATH (filepath):");
@@ -10,9 +12,21 @@ public class UserOfMazeSolver {
             System.out.println("        The file the explorer starts on\n");
             return;
         }
+      	Maze maze = null;
+        String sourceFilename = args[0];
         int rank = Integer.parseInt(args[1]);
         int file = Integer.parseInt(args[2]);
-        Maze maze = new Maze(args[0], rank, file);
+        while (maze == null) {
+            try {
+            	maze = new Maze(sourceFilename, rank, file);
+          	} catch (java.io.FileNotFoundException e) {
+                Scanner consoleReader = new Scanner(System.in);
+            	while (consoleReader.hasNext()) {
+                    sourceFilename = consoleReader.next();
+                    break;
+                }
+          	}
+        }
         MazeSolver solver;
         solver = new MazeSolver(maze);
         System.out.println("Can Solve: " + solver.canSolve());
