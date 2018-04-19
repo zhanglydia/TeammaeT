@@ -1,16 +1,16 @@
 /**
-  Represent a Maze with an Explorer in it
+   Represent a Maze with an Explorer in it
 
-  A "MazeTerminal" is...
-    o  a wall element; or
-    o  a treasure; or
-    o  a stepping stone.
+   A "MazeTerminal" is...
+   o  a wall element; or
+   o  a treasure; or
+   o  a stepping stone.
 
-  A "Maze" is...
-    o  a MazeTerminal; or
-    o  a stepping stone with a Maze as any of its 4 neighbors
-  plus an optional explorer positioned on any element of the Maze.
- */
+   A "Maze" is...
+   o  a MazeTerminal; or
+   o  a stepping stone with a Maze as any of its 4 neighbors
+   plus an optional explorer positioned on any element of the Maze.
+*/
 import java.util.Scanner;
 
 public class Maze {
@@ -25,9 +25,9 @@ public class Maze {
     public final static int NORTH = 2;
     public final static int WEST =  4;
     public final static int SOUTH = 8;
-       /* Values are pretty arbitrary. Values of 2^n might be useful
-          in the unlikely event that we ever want to add north-west, etc.:
-          2+4 --> 6  */
+    /* Values are pretty arbitrary. Values of 2^n might be useful
+       in the unlikely event that we ever want to add north-west, etc.:
+       2+4 --> 6  */
 
     private int[][] maze;
     private final static int MAX_RANKS = 64;
@@ -36,9 +36,9 @@ public class Maze {
     private Vector explorerPosition;  // see Vector inner class, below
 
     /**
-      Construct an instance from the contents of a file.
-      For v0, maze is rectangular, with every line having the same length.
-     */
+       Construct an instance from the contents of a file.
+       For v0, maze is rectangular, with every line having the same length.
+    */
     public Maze( String sourceFilename
 		 , int explorerRank, int explorerFile
 		 ) {
@@ -49,9 +49,7 @@ public class Maze {
       
     	Scanner sc = null;
 
-        try {
- 
-       
+        try {       
             sc = new Scanner( new java.io.File( sourceFilename));
         } catch (java.io.FileNotFoundException e) {
 	    maze[0] = new int[]{WALL};
