@@ -40,15 +40,27 @@ public class Maze {
       For v0, maze is rectangular, with every line having the same length.
      */
     public Maze( String sourceFilename
-               , int explorerRank, int explorerFile
-               ) throws java.io.FileNotFoundException {
+		 , int explorerRank, int explorerFile
+		 ) {
 
         /* Construct the maze array one rank at a time, in case
            we ever allow non-rectangular mazes  */
         maze = new int[ MAX_RANKS][];
+      
+    	Scanner sc = null;
 
-        Scanner sc = new Scanner( new java.io.File( sourceFilename));
-        sc.useDelimiter("");  // Whitespaces are data, not delimiters.
+        try {
+ 
+       
+            sc = new Scanner( new java.io.File( sourceFilename));
+        } catch (java.io.FileNotFoundException e) {
+	    maze[0] = new int[]{WALL};
+	    rankCount = 1;
+	    explorerPosition = new Vector().add( explorerRank, explorerFile);
+	    return;
+        }
+      
+        sc.useDelimiter("");  // Whitespaces are data, not delimiters. 
 
         // process the maze file
         while( sc.hasNextLine() ) {
@@ -56,7 +68,7 @@ public class Maze {
             /* So rankCount == last rank +1, as usual.
                That is, rankCount is one larger than the number of
                the last-used rank.
-             */
+	    */
             String line = sc.nextLine();
             // System.out.println( "|" + line + "|");
 
@@ -74,10 +86,7 @@ public class Maze {
             }
         }
 
-        explorerPosition = new Vector().add( explorerRank, explorerFile);
-        // // for debugging: report explorer's location
-        // System.out.println( "explorer at " + explorerPosition.rank
-                          // + ", " +           explorerPosition.file);
+	explorerPosition = new Vector().add( explorerRank, explorerFile);
     }
 
 
